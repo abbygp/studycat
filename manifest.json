@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "Herbie: The StudyCat",
+  "version": "1.0",
+  "description": "a cat that helps you stay positive while studying",
+  "permissions": [
+    "tabs"
+  ],  
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; img-src chrome-extension://jboomabeinejkoihalnmgdhbckafnpbd/images/;"
+  },
+  "web_accessible_resources": [
+    {
+        "resources": [
+            "images/cat.png",
+            "images/x.png"
+        ],
+        "matches": [
+            "*://*/*"
+        ],
+        "use_dynamic_url": true
+    }
+],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "/images/cat.png"
+  },
+  "icons": {
+    "16": "/images/cat.png"
+  },
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "js": ["content.js"]
+  }],
+  "background": {
+    "service_worker": "background.js"
+  }
+}

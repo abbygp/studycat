@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Herbie's Timer</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .timer {
+      font-size: 26px;
+      text-align: center;
+      margin: 20px;
+    }
+  </style>
+</head>
+<body class="body">
+  <div class="background">
+    <div class="left">
+      <div><a href="popup.html"><img src="/images/xmenu.png" class="menuButton"></a></div>
+    </div>
+    <div class="new-page">
+      <p id="timer"></p>
+      <div>
+        <label for="duration">How long until your next break? (minutes)</label>
+        <input type="number" id="duration" min="1" step="1" value="30">
+        <button onclick="startCountdown()">Start</button>
+        <button onclick="stopCountdown()">Stop</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var countdownInterval;
+
+    function startTimer(duration, display) {
+      var startTime = Date.now();
+      var remainingTime = duration;
+
+      countdownInterval = setInterval(function () {
+        var currentTime = Date.now();
+        var elapsedTime = (currentTime - startTime) / 1000;
+
+        remainingTime = duration - elapsedTime;
+        if (remainingTime < 0) {
+          clearInterval(countdownInterval);
+          remainingTime = 0;
+        }
+
+        var hours = Math.floor(remainingTime / 3600);
+        var minutes = Math.floor((remainingTime % 3600) / 60);
+        var seconds = Math.floor(remainingTime % 60);
+
+        hours = hours < 10 ? "0" + hours : hours;
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = hours + ":" + minutes + ":" + seconds;
+      }, 1000);
+  
+      return remainingTime;
+    }
+
+    document.getElementById("timer").innerHTML = startTimer();
+
+    function startCountdown() {
+      var durationInput = document.getElementById('duration');
+      var duration = parseInt(durationInput.value) * 60;
+      var display = document.querySelector('#timer');
+      var hours = Math.floor(duration / 3600);
+      var minutes = Math.floor((duration % 3600) / 60);
+      var seconds = duration % 60;
+
+      hours = hours < 10 ? "0" + hours : hours;
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
+
+      display.textContent = hours + ":" + minutes + ":" + seconds;
+
+      startTimer(duration, display);
+    }
+
+    function stopCountdown() {
+      clearInterval(countdownInterval);
+      document.getElementById('timer').textContent = "Timer stopped!";
+    }
+  </script>
+</body>
+</html>
