@@ -12,7 +12,7 @@
 .cat {
     width: 100px;
     height: 100px;
-    margin-top: 20px;
+    margin: 20px;
 }
 .icon {
     width: 25px;
@@ -26,6 +26,12 @@
     height: 20px;
     margin: 3px;
 }
+.musicButton {
+    width: 25px;
+    height: 25px;
+    margin-top: 3px;
+    margin-right: 8px;
+}
 .left {
     display: flex;
     flex-direction: column;
@@ -34,6 +40,12 @@
     text-align: left;
     position: absolute;
 }
+.right {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 0;
+}
 .center {
     display: flex;
     flex-direction: column;
@@ -41,8 +53,8 @@
     align-items: center;
     text-align: center;
 }
-.introText {
-    margin: 10px;
+.introBtn {
+    margin: 20px;
     border-style: solid;
     border-radius: 15px;
     border-width: 3px;
@@ -52,6 +64,10 @@
     background-color: #d99b9b;
     font-size: 14px;
     text-align: center;
+    cursor: pointer;
+}
+.introBtn:hover {
+    background-color: #F2C7C7;
 }
 .qbutton {
     border: none;
